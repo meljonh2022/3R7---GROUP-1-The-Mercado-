@@ -7,16 +7,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
-      {/* Title */}
       <Text style={styles.title}>Welcome Back!</Text>
-
-      {/* Input Fields */}
       <View style={styles.inputWrapper}>
         <TextInput
           style={styles.input}
@@ -36,20 +33,23 @@ const LoginPage = () => {
           onChangeText={setPassword}
         />
       </View>
-
-      {/* Forgot Password */}
       <TouchableOpacity>
         <Text style={styles.forgotPassword}>Forgot Password</Text>
       </TouchableOpacity>
-
-      {/* Login Button */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Home')} // Navigate to HomePage
+      >
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-
-      {/* Sign Up Link */}
       <Text style={styles.signUpText}>
-        Don’t have an account? <Text style={styles.signUpLink}>Sign Up</Text>
+        Don’t have an account?{' '}
+        <Text
+          style={styles.signUpLink}
+          onPress={() => navigation.navigate('SignUp')} // Navigate to SignUpPage
+        >
+          Sign Up
+        </Text>
       </Text>
     </View>
   );
